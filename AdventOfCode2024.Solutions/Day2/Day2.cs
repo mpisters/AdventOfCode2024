@@ -2,43 +2,56 @@ namespace AdventOfCode2024.Solutions.Day2;
 
 public class Day2
 {
-        public int GetTotalSaveReports(string fileName)
+    public int GetTotalSaveReports(string fileName)
+    {
+        var lines = FileParser.GetLines("Day2", fileName);
+        var totalSafeReports = 0;
+        foreach (var line in lines)
         {
-                var lines = FileParser.GetLines("Day2", fileName);
-                var totalSafeReports = 0;
-                foreach (var line in lines)
+            var report = line.Split(" ").Select(int.Parse).ToList();
+            var newSortedReportIncreased = report.OrderBy(x => x).ToList();
+            var newSortedReportDecreased = report.OrderByDescending(x => x).ToList();
+            var isIncreased = report.ElementAt(0) < report.ElementAt(1);
+            if (isIncreased)
+            {
+                if (!report.SequenceEqual( newSortedReportIncreased))
                 {
-                        var report = line.Split(" ").Select(int.Parse);
-                        var previous = report.ElementAt(0);
-                        bool? isSafeIncrease = null;
-                        var startPoint = report.ElementAt(0);
-                        var isIncrease = startPoint < report.ElementAt(1);
-                        for (var i = 1; i < report.Count() - 1; i++)
-                        {
-                                var currentItem = report.ElementAt(i);
-                                if (!(Math.Abs(previous - currentItem) >= 1 && Math.Abs(previous - currentItem) <= 3))
-                                {
-                                        isSafeIncrease = false;
-                                        break;
-                                }
-
-                                if (isIncrease && previous >= currentItem|| !isIncrease && previous <= currentItem)
-                                {
-                                        isSafeIncrease = false;
-                                        break;
-                                }
-                                previous = currentItem;
-                                isSafeIncrease = true;
-                        }
-
-                        if (isSafeIncrease is true)
-                        {
-                                totalSafeReports++;
-                        }
-                        
-                        
+                    continue;
                 }
+            }
 
-                return totalSafeReports;
+            if (!isIncreased)
+            {
+                if (!report.SequenceEqual( newSortedReportDecreased))
+                {
+                    continue;
+                }
+            }
+
+            var previous = report.ElementAt(0);
+            var isValid = false;
+            for (int i = 1; i < report.Count(); i++)
+            {
+                var currentItem = report.ElementAt(i);
+                if (Math.Abs(currentItem - previous) >= 1 &&
+                    Math.Abs(currentItem - previous) <= 3)
+                {
+                    isValid = true;
+                }
+                else
+                {
+                    isValid = false;
+                    break;
+                }
+                previous = currentItem;
+            }
+
+            if (isValid)
+            {
+                totalSafeReports++;
+            }
         }
+
+        return totalSafeReports;
+    }
 }
