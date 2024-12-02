@@ -16,10 +16,8 @@ public class Day1Test : ITest
        Assert.Equal(2580760, result);
     }
 
-
-
     [Fact]
-    public void ShouldReturnResultPart2_example()
+    public void ShouldReturnResultExamplePart2()
     {
         var result = Sut().GetTotalSimilarity("example_input.txt");
         Assert.Equal(31, result);

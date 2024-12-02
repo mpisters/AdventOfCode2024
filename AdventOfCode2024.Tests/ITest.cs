@@ -6,5 +6,7 @@ public interface ITest
 
     public void ShouldReturnResultPart1();
 
+    public void ShouldReturnResultExamplePart2();
+
     public void ShouldReturnResultPart2();
 }
