@@ -26,7 +26,7 @@ public class Day2Test : ITest
     public void ShouldReturnResultPart2()
     {
         var result = Sut().GetTotalSaveReportsWithTolerance("input.txt");
-        Assert.Equal(4, result);
+        Assert.Equal(692, result);
     }
 
     private Solutions.Day2.Day2 Sut() => new Solutions.Day2.Day2();
