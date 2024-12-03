@@ -13,17 +13,20 @@ public class Day2Test : ITest
     public void ShouldReturnResultPart1()
     {
         var result = Sut().GetTotalSaveReports("input.txt");
-        Assert.Equal(672, result);
+        Assert.Equal(663, result);
     }
-
+    [Fact]
     public void ShouldReturnResultExamplePart2()
     {
-        throw new NotImplementedException();
+        var result = Sut().GetTotalSaveReportsWithTolerance("input_example.txt");
+        Assert.Equal(4, result);
     }
 
+    [Fact]
     public void ShouldReturnResultPart2()
     {
-        throw new NotImplementedException();
+        var result = Sut().GetTotalSaveReportsWithTolerance("input.txt");
+        Assert.Equal(4, result);
     }
 
     private Solutions.Day2.Day2 Sut() => new Solutions.Day2.Day2();
