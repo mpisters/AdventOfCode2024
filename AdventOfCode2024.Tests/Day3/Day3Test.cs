@@ -29,7 +29,7 @@ public class Day3Test : ITest
     public void ShouldReturnResultPart2()
     {
         var result = Sut().GetTotalMultipliedWithCommandos("input.txt");
-        Assert.Equal(83546082, result);
+        Assert.Equal(82733683, result);
     }
 
     private Solutions.Day3.Day3 Sut() => new Solutions.Day3.Day3();

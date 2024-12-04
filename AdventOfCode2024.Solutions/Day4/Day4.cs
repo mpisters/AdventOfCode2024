@@ -119,4 +119,44 @@ public class Day4
 
         return totalXmas;
     }
+    
+    public int GetTotalMas(string fileName)
+    {
+        var lines = FileParser.GetLines("Day4", fileName);
+        var matrix = lines.Select(x => x.ToCharArray()).ToList();
+        var totalmas = 0;
+        for (var i = 0; i < matrix.Count; i++)
+        {
+            var line = matrix[i];
+            for (var j = 0; j < line.Length; j++)
+            {
+                var letter = line[j];
+                if (letter == 'A')
+                {
+                    try
+                    {
+                        var rt = matrix[i + 1][j + 1];
+                        var rb = matrix[i - 1][j + 1];
+                        var lb = matrix[i - 1][j - 1];
+                        var lt = matrix[i + 1][j - 1];
+                        if (rt != lb &&
+                            rt is 'S' or 'M' &&
+                            lb is 'S' or 'M' && 
+                            rb is 'S' or 'M' && 
+                            lt is 'S' or 'M' &&
+                            lt != rb)
+                        {
+                            totalmas++;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        return totalmas;
+    }
 }

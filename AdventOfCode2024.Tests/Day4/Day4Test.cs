@@ -27,17 +27,21 @@ public class Day4Test : ITest
     public void ShouldReturnResultPart1()
     {
         var result = Sut().GetTotalXmas("input.txt");
-        Assert.Equal(4, result);
+        Assert.Equal(2551, result);
     }
 
+    [Fact]
     public void ShouldReturnResultExamplePart2()
     {
-        throw new NotImplementedException();
+        var result = Sut().GetTotalMas("input_example4.txt");
+        Assert.Equal(9, result);
     }
 
+    [Fact]
     public void ShouldReturnResultPart2()
     {
-        throw new NotImplementedException();
+        var result = Sut().GetTotalMas("input.txt");
+        Assert.Equal(1985, result);
     }
     private Solutions.Day4.Day4 Sut() => new Solutions.Day4.Day4();
 
